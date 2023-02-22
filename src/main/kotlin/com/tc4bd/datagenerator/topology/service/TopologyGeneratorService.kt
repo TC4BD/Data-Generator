@@ -3,16 +3,17 @@ package com.tc4bd.datagenerator.topology.service
 import com.tc4bd.datagenerator.topology.model.Station
 import com.tc4bd.datagenerator.topology.model.StationRepository
 import com.tc4bd.datagenerator.topology.model.StationType
+import io.micrometer.prometheus.PrometheusMeterRegistry
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.DeleteMapping
 import kotlin.random.Random
 
 @Service
 class TopologyGeneratorService(
-    stationRepository: StationRepository
+    stationRepository: StationRepository,
+    meterRegistry: PrometheusMeterRegistry
 ) {
     val stationRepository = stationRepository
-
 
     fun generateData() {
         val numStations = genNumSubstations(StationType.DISTRIBUTION_TRANSFORMER_STATION)
